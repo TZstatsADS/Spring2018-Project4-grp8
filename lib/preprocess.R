@@ -20,9 +20,9 @@ ms_mat <- function(df){
 ms_train <- read.csv("../data/MS_sample/data_train.csv")[,-1]
 ms_test <- read.csv("../data/MS_sample/data_test.csv")[,-1]
 ms_train_mat <- ms_mat(ms_train)
-save(ms_train_mat, file="../output/ms_train_mat.Rdata")
+save(ms_train_mat, file="../output/ms_train_mat.RData")
 ms_test_mat <- ms_mat(ms_test)
-save(ms_test_mat, file="../output/ms_test_mat.Rdata")
+save(ms_test_mat, file="../output/ms_test_mat.RData")
 
 
 
@@ -47,6 +47,6 @@ movie_mat <- function(df){
 movie_train <- read.csv("../data/eachmovie_sample/data_train.csv")[,-1]
 movie_test <- read.csv("../data/eachmovie_sample/data_test.csv")[,-1]
 movie_train_mat <- movie_mat(movie_train)
-save(movie_train_mat, file="../output/movie_train_mat.Rdata")
+save(movie_train_mat, file="../output/movie_train_mat.RData")
 movie_test_mat <- movie_mat(movie_test)
-save(movie_test_mat, file="../output/movie_test_mat.Rdata")
+save(movie_test_mat, file="../output/movie_test_mat.RData")

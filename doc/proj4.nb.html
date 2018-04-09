@@ -1700,11 +1700,11 @@ $(document).ready(function () {
 <h1>dataset</h1>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuI21zXG5tc190cmFpbiA8LSByZWFkLmNzdihcIi4uL2RhdGEvTVNfc2FtcGxlL2RhdGFfdHJhaW4uY3N2XCIpWywtMV1cbm1zX3Rlc3QgPC0gcmVhZC5jc3YoXCIuLi9kYXRhL01TX3NhbXBsZS9kYXRhX3Rlc3QuY3N2XCIpWywtMV1cbiNtb3ZpZVxubW92aWVfdHJhaW4gPC0gcmVhZC5jc3YoXCIuLi9kYXRhL2VhY2htb3ZpZV9zYW1wbGUvZGF0YV90cmFpbi5jc3ZcIilbLC0xXVxubW92aWVfdGVzdCA8LSByZWFkLmNzdihcIi4uL2RhdGEvZWFjaG1vdmllX3NhbXBsZS9kYXRhX3Rlc3QuY3N2XCIpWywtMV1cbmBgYCJ9 -->
-<pre class="r"><code>#ms
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBtc1xubXNfdHJhaW4gPC0gcmVhZC5jc3YoXCIuLi9kYXRhL01TX3NhbXBsZS9kYXRhX3RyYWluLmNzdlwiKVssLTFdXG5tc190ZXN0IDwtIHJlYWQuY3N2KFwiLi4vZGF0YS9NU19zYW1wbGUvZGF0YV90ZXN0LmNzdlwiKVssLTFdXG4jIG1vdmllXG5tb3ZpZV90cmFpbiA8LSByZWFkLmNzdihcIi4uL2RhdGEvZWFjaG1vdmllX3NhbXBsZS9kYXRhX3RyYWluLmNzdlwiKVssLTFdXG5tb3ZpZV90ZXN0IDwtIHJlYWQuY3N2KFwiLi4vZGF0YS9lYWNobW92aWVfc2FtcGxlL2RhdGFfdGVzdC5jc3ZcIilbLC0xXVxuYGBgIn0= -->
+<pre class="r"><code># ms
 ms_train &lt;- read.csv(&quot;../data/MS_sample/data_train.csv&quot;)[,-1]
 ms_test &lt;- read.csv(&quot;../data/MS_sample/data_test.csv&quot;)[,-1]
-#movie
+# movie
 movie_train &lt;- read.csv(&quot;../data/eachmovie_sample/data_train.csv&quot;)[,-1]
 movie_test &lt;- read.csv(&quot;../data/eachmovie_sample/data_test.csv&quot;)[,-1]</code></pre>
 <!-- rnb-source-end -->
@@ -1715,8 +1715,11 @@ movie_test &lt;- read.csv(&quot;../data/eachmovie_sample/data_test.csv&quot;)[,-
 <h1>preprocess</h1>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubG9hZChcIi4uL291dHB1dC9tc190cmFpbl9tYXQuUmRhdGFcIilcbmBgYCJ9 -->
-<pre class="r"><code>load(&quot;../output/ms_train_mat.Rdata&quot;)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubG9hZChcIi4uL291dHB1dC9tc190cmFpbl9tYXQuUkRhdGFcIilcbmxvYWQoXCIuLi9vdXRwdXQvbXNfdGVzdF9tYXQuUkRhdGFcIilcbmxvYWQoXCIuLi9vdXRwdXQvbW92aWVfdHJhaW5fbWF0LlJEYXRhXCIpXG5sb2FkKFwiLi4vb3V0cHV0L21vdmllX3Rlc3RfbWF0LlJEYXRhXCIpXG5gYGAifQ== -->
+<pre class="r"><code>load(&quot;../output/ms_train_mat.RData&quot;)
+load(&quot;../output/ms_test_mat.RData&quot;)
+load(&quot;../output/movie_train_mat.RData&quot;)
+load(&quot;../output/movie_test_mat.RData&quot;)</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
@@ -1729,26 +1732,9 @@ movie_test &lt;- read.csv(&quot;../data/eachmovie_sample/data_test.csv&quot;)[,-
 <h3>Pearson Correlation(not required)</h3>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubW92aWVfbWF0IDwtIGZ1bmN0aW9uKGRmKXtcbiAgbW92aWUgPC0gc29ydCh1bmlxdWUoZGYkTW92aWUpKVxuICB1c2VyIDwtIHVuaXF1ZShkZiRVc2VyKVxuICBwcmludCh1c2VyKVxuICBtYXQgPC0gbWF0cml4KE5BLCBucm93PWxlbmd0aCh1c2VyKSwgbmNvbD1sZW5ndGgobW92aWUpKVxuICByb3duYW1lcyhtYXQpIDwtIGFzLmNoYXJhY3Rlcih1c2VyKVxuICBjb2xuYW1lcyhtYXQpIDwtIGFzLmNoYXJhY3Rlcihtb3ZpZSlcbiAgZm9yIChpIGluIDE6bGVuZ3RoKHVzZXIpKXtcbiAgICB1c2VyaWQgPC0gdXNlcltpXVxuICAgIG1vdmllaWRMaXN0IDwtIGRmJE1vdmllW3doaWNoKGRmJFVzZXIgPT0gdXNlcmlkKV1cbiAgICBmb3IgKGogaW4gMTpsZW5ndGgobW92aWVpZExpc3QpKXtcbiAgICAgIG1vdmllaWQgPC0gbW92aWVpZExpc3Rbal1cbiAgICAgIHNjb3JlIDwtIGRmJFNjb3JlW3doaWNoKChkZiRVc2VyID09IHVzZXJpZCkgJiAoZGYkTW92aWUgPT0gbW92aWVpZCkpXVxuICAgICAgbWF0W2FzLmNoYXJhY3Rlcih1c2VyaWQpLCBhcy5jaGFyYWN0ZXIobW92aWVpZCldIDwtIHNjb3JlXG4gICAgICBwcmludChwYXN0ZSh1c2VyaWQsIG1vdmllaWQsIHNjb3JlKSlcbiAgICB9XG4gIH1cbiAgcmV0dXJuKG1hdClcbn1cbmBgYCJ9 -->
-<pre class="r"><code>movie_mat &lt;- function(df){
-  movie &lt;- sort(unique(df$Movie))
-  user &lt;- unique(df$User)
-  print(user)
-  mat &lt;- matrix(NA, nrow=length(user), ncol=length(movie))
-  rownames(mat) &lt;- as.character(user)
-  colnames(mat) &lt;- as.character(movie)
-  for (i in 1:length(user)){
-    userid &lt;- user[i]
-    movieidList &lt;- df$Movie[which(df$User == userid)]
-    for (j in 1:length(movieidList)){
-      movieid &lt;- movieidList[j]
-      score &lt;- df$Score[which((df$User == userid) &amp; (df$Movie == movieid))]
-      mat[as.character(userid), as.character(movieid)] &lt;- score
-      print(paste(userid, movieid, score))
-    }
-  }
-  return(mat)
-}</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucGVhcnNvbl9tc190cmFpbiA8LSBjb3IodChtc190cmFpbl9tYXQpLCBtZXRob2QgPSBcInBlYXJzb25cIilcbnBlYXJzb25fbW92aWVfdHJhaW4gPC0gY29yKHQobW92aWVfdHJhaW5fbWF0KSwgbWV0aG9kID0gXCJwZWFyc29uXCIpXG5gYGAifQ== -->
+<pre class="r"><code>pearson_ms_train &lt;- cor(t(ms_train_mat), method = &quot;pearson&quot;)
+pearson_movie_train &lt;- cor(t(movie_train_mat), method = &quot;pearson&quot;)</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
@@ -1757,15 +1743,88 @@ movie_test &lt;- read.csv(&quot;../data/eachmovie_sample/data_test.csv&quot;)[,-
 <h3>Spearman Correlation(1,2)</h3>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc3BlYXJtYW5fbXNfdHJhaW4gPC0gY29yKHQobXNfdHJhaW5fbWF0KSwgbWV0aG9kID0gXCJzcGVhcm1hblwiKVxuYGBgIn0= -->
-<pre class="r"><code>spearman_ms_train &lt;- cor(t(ms_train_mat), method = &quot;spearman&quot;)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBtc1xuc3BlYXJtYW5fd2VpZ2h0X21zIDwtIGNvcih0KG1zX3RyYWluX21hdCksIG1ldGhvZCA9IFwic3BlYXJtYW5cIilcbnNhdmUoc3BlYXJtYW5fd2VpZ2h0X21zLCBmaWxlPVwiLi4vb3V0cHV0L3NwZWFybWFuX3dlaWdodF9tcy5SRGF0YVwiKVxuIyBtb3ZpZVxuc3BlYXJtYW5fd2VpZ2h0X21vdmllIDwtIGNvcih0KG1vdmllX3RyYWluX21hdCksIG1ldGhvZCA9IFwic3BlYXJtYW5cIilcbnNhdmUoc3BlYXJtYW5fd2VpZ2h0X21vdmllLCBmaWxlPVwiLi4vb3V0cHV0L3NwZWFybWFuX3dlaWdodF9tb3ZpZS5SRGF0YVwiKVxuYGBgIn0= -->
+<pre class="r"><code># ms
+spearman_weight_ms &lt;- cor(t(ms_train_mat), method = &quot;spearman&quot;)
+save(spearman_weight_ms, file=&quot;../output/spearman_weight_ms.RData&quot;)
+# movie
+spearman_weight_movie &lt;- cor(t(movie_train_mat), method = &quot;spearman&quot;)
+save(spearman_weight_movie, file=&quot;../output/spearman_weight_movie.RData&quot;)</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+<div id="mean-square-difference12" class="section level3">
+<h3>Mean-square-difference(1,2)</h3>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubXNkX3dlaWdodCA8LSBmdW5jdGlvbihkZil7XG4gIG4gPC0gZGltKGRmKVsxXVxuICBkaXNzaW0gPC0gbWF0cml4KE5BLCBuLCBuKVxuICB1c2VyIDwtIHJvd25hbWVzKGRmKVxuICBjb2xuYW1lcyhkaXNzaW0pIDwtIHVzZXJcbiAgcm93bmFtZXMoZGlzc2ltKSA8LSB1c2VyXG4gIGZvciAoaSBpbiAxOm4pe1xuICAgIGZvciAoaiBpbiAxOm4pe1xuICAgICAgdV9pIDwtIGRmW2ksXVxuICAgICAgdV9qIDwtIGRmW2osXVxuICAgICAgZGlzc2ltW2ksal0gPC0gbWVhbigodV9pIC0gdV9qKV4yKVxuICAgIH1cbiAgfVxuICBMIDwtIG1heChkaXNzaW0pXG4gIHcgPC0gKEwgLSBkaXNzaW0pL0xcbiAgcmV0dXJuICh3KVxufVxuYGBgIn0= -->
+<pre class="r"><code>msd_weight &lt;- function(df){
+  n &lt;- dim(df)[1]
+  dissim &lt;- matrix(NA, n, n)
+  user &lt;- rownames(df)
+  colnames(dissim) &lt;- user
+  rownames(dissim) &lt;- user
+  for (i in 1:n){
+    for (j in 1:n){
+      u_i &lt;- df[i,]
+      u_j &lt;- df[j,]
+      dissim[i,j] &lt;- mean((u_i - u_j)^2)
+    }
+  }
+  L &lt;- max(dissim)
+  w &lt;- (L - dissim)/L
+  return (w)
+}</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubXNkX3dlaWdodF9tcyA8LSBtc2Rfd2VpZ2h0KG1zX3RyYWluX21hdClcbnNhdmUobXNkX3dlaWdodF9tcywgZmlsZT1cIi4uL291dHB1dC9tc2Rfd2VpZ2h0X21zX3RyYWluLlJEYXRhXCIpXG5gYGAifQ== -->
+<pre class="r"><code>msd_weight_ms &lt;- msd_weight(ms_train_mat)
+save(msd_weight_ms, file=&quot;../output/msd_weight_ms_train.RData&quot;)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubXNkX3dlaWdodDIgPC0gZnVuY3Rpb24oZGYpe1xuICBuX3VzZXIgPC0gZGltKGRmKVsxXVxuICBuX2l0ZW0gPC0gZGltKGRmKVsyXVxuICBjIDwtIGRmXG4gIGNbd2hpY2goYz4wKV0gPSAxXG4gIHMgPC0gZGZcbiAgZGlzc2ltIDwtIG1hdHJpeChOQSwgbl91c2VyLCBuX3VzZXIpXG4gIHVzZXIgPC0gcm93bmFtZXMoZGYpXG4gIGNvbG5hbWVzKGRpc3NpbSkgPC0gdXNlclxuICByb3duYW1lcyhkaXNzaW0pIDwtIHVzZXJcbiAgZm9yIChpIGluIDE6bl91c2VyKXtcbiAgICBmb3IgKGogaW4gMTpuX3VzZXIpe1xuICAgICAgdCA8LSAwXG4gICAgICBiIDwtIDBcbiAgICAgIGZvciAobiBpbiAxOm5faXRlbSl7XG4gICAgICAgIHQgPC0gdCArIGNbaSxuXSpjW2osbl0qKHNbaSxuXS1zW2osbl0pXjJcbiAgICAgICAgYiA8LSBiICsgY1tpLG5dKmNbaixuXVxuICAgICAgfVxuICAgICAgZGlzc2ltW2ksal0gPC0gdC9iXG4gICAgICBwcmludChwYXN0ZShpLGosdCxiLGRpc3NpbSkpXG4gICAgfVxuICB9XG4gIEwgPC0gbWF4KGRpc3NpbSlcbiAgdyA8LSAoTCAtIGRpc3NpbSkvTFxuICByZXR1cm4gKHcpXG59XG5gYGAifQ== -->
+<pre class="r"><code>msd_weight2 &lt;- function(df){
+  n_user &lt;- dim(df)[1]
+  n_item &lt;- dim(df)[2]
+  c &lt;- df
+  c[which(c&gt;0)] = 1
+  s &lt;- df
+  dissim &lt;- matrix(NA, n_user, n_user)
+  user &lt;- rownames(df)
+  colnames(dissim) &lt;- user
+  rownames(dissim) &lt;- user
+  for (i in 1:n_user){
+    for (j in 1:n_user){
+      t &lt;- 0
+      b &lt;- 0
+      for (n in 1:n_item){
+        t &lt;- t + c[i,n]*c[j,n]*(s[i,n]-s[j,n])^2
+        b &lt;- b + c[i,n]*c[j,n]
+      }
+      dissim[i,j] &lt;- t/b
+      print(paste(i,j,t,b,dissim))
+    }
+  }
+  L &lt;- max(dissim)
+  w &lt;- (L - dissim)/L
+  return (w)
+}</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
 </div>
 </div>
 </div>
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAicHJvajQiCm91dHB1dDogaHRtbF9ub3RlYm9vawotLS0KCiMgZGF0YXNldApgYGB7cn0KI21zCm1zX3RyYWluIDwtIHJlYWQuY3N2KCIuLi9kYXRhL01TX3NhbXBsZS9kYXRhX3RyYWluLmNzdiIpWywtMV0KbXNfdGVzdCA8LSByZWFkLmNzdigiLi4vZGF0YS9NU19zYW1wbGUvZGF0YV90ZXN0LmNzdiIpWywtMV0KI21vdmllCm1vdmllX3RyYWluIDwtIHJlYWQuY3N2KCIuLi9kYXRhL2VhY2htb3ZpZV9zYW1wbGUvZGF0YV90cmFpbi5jc3YiKVssLTFdCm1vdmllX3Rlc3QgPC0gcmVhZC5jc3YoIi4uL2RhdGEvZWFjaG1vdmllX3NhbXBsZS9kYXRhX3Rlc3QuY3N2IilbLC0xXQpgYGAKCiMgcHJlcHJvY2VzcwpgYGB7cn0KbG9hZCgiLi4vb3V0cHV0L21zX3RyYWluX21hdC5SZGF0YSIpCmBgYAoKIyBNZW1vcnktIGJhc2VkIEFsZ29yaXRobQojIyBTaW1pbGFyaXR5IFdlaWdodAojIyMgUGVhcnNvbiBDb3JyZWxhdGlvbihub3QgcmVxdWlyZWQpCmBgYHtyfQpwZWFyc29uX21zX3RyYWluIDwtIGNvcih0KG1zX3RyYWluX21hdCksIG1ldGhvZCA9ICJwZWFyc29uIikKYGBgCgojIyMgU3BlYXJtYW4gQ29ycmVsYXRpb24oMSwyKQpgYGB7cn0Kc3BlYXJtYW5fbXNfdHJhaW4gPC0gY29yKHQobXNfdHJhaW5fbWF0KSwgbWV0aG9kID0gInNwZWFybWFuIikKYGBg</div>
+<div id="rmd-source-code">LS0tCnRpdGxlOiAicHJvajQiCm91dHB1dDogaHRtbF9ub3RlYm9vawotLS0KCiMgZGF0YXNldApgYGB7cn0KIyBtcwptc190cmFpbiA8LSByZWFkLmNzdigiLi4vZGF0YS9NU19zYW1wbGUvZGF0YV90cmFpbi5jc3YiKVssLTFdCm1zX3Rlc3QgPC0gcmVhZC5jc3YoIi4uL2RhdGEvTVNfc2FtcGxlL2RhdGFfdGVzdC5jc3YiKVssLTFdCiMgbW92aWUKbW92aWVfdHJhaW4gPC0gcmVhZC5jc3YoIi4uL2RhdGEvZWFjaG1vdmllX3NhbXBsZS9kYXRhX3RyYWluLmNzdiIpWywtMV0KbW92aWVfdGVzdCA8LSByZWFkLmNzdigiLi4vZGF0YS9lYWNobW92aWVfc2FtcGxlL2RhdGFfdGVzdC5jc3YiKVssLTFdCmBgYAoKIyBwcmVwcm9jZXNzCmBgYHtyfQpsb2FkKCIuLi9vdXRwdXQvbXNfdHJhaW5fbWF0LlJEYXRhIikKbG9hZCgiLi4vb3V0cHV0L21zX3Rlc3RfbWF0LlJEYXRhIikKbG9hZCgiLi4vb3V0cHV0L21vdmllX3RyYWluX21hdC5SRGF0YSIpCmxvYWQoIi4uL291dHB1dC9tb3ZpZV90ZXN0X21hdC5SRGF0YSIpCmBgYAoKIyBNZW1vcnktIGJhc2VkIEFsZ29yaXRobQojIyBTaW1pbGFyaXR5IFdlaWdodAojIyMgUGVhcnNvbiBDb3JyZWxhdGlvbihub3QgcmVxdWlyZWQpCmBgYHtyfQpwZWFyc29uX3dlaWdodF9tcyA8LSBjb3IodChtc190cmFpbl9tYXQpLCBtZXRob2QgPSAicGVhcnNvbiIpCnBlYXJzb25fd2VpZ2h0X21vdmllIDwtIGNvcih0KG1vdmllX3RyYWluX21hdCksIG1ldGhvZCA9ICJwZWFyc29uIikKYGBgCgojIyMgU3BlYXJtYW4gQ29ycmVsYXRpb24oMSwyKQpgYGB7cn0KIyBtcwpzcGVhcm1hbl93ZWlnaHRfbXMgPC0gY29yKHQobXNfdHJhaW5fbWF0KSwgbWV0aG9kID0gInNwZWFybWFuIikKc2F2ZShzcGVhcm1hbl93ZWlnaHRfbXMsIGZpbGU9Ii4uL291dHB1dC9zcGVhcm1hbl93ZWlnaHRfbXMuUkRhdGEiKQojIG1vdmllCnNwZWFybWFuX3dlaWdodF9tb3ZpZSA8LSBjb3IodChtb3ZpZV90cmFpbl9tYXQpLCBtZXRob2QgPSAic3BlYXJtYW4iKQpzYXZlKHNwZWFybWFuX3dlaWdodF9tb3ZpZSwgZmlsZT0iLi4vb3V0cHV0L3NwZWFybWFuX3dlaWdodF9tb3ZpZS5SRGF0YSIpCmBgYAoKIyMjIE1lYW4tc3F1YXJlLWRpZmZlcmVuY2UoMSwyKQpgYGB7cn0KbXNkX3dlaWdodCA8LSBmdW5jdGlvbihkZil7CiAgbiA8LSBkaW0oZGYpWzFdCiAgZGlzc2ltIDwtIG1hdHJpeChOQSwgbiwgbikKICB1c2VyIDwtIHJvd25hbWVzKGRmKQogIGNvbG5hbWVzKGRpc3NpbSkgPC0gdXNlcgogIHJvd25hbWVzKGRpc3NpbSkgPC0gdXNlcgogIGZvciAoaSBpbiAxOm4pewogICAgZm9yIChqIGluIDE6bil7CiAgICAgIHVfaSA8LSBkZltpLF0KICAgICAgdV9qIDwtIGRmW2osXQogICAgICBkaXNzaW1baSxqXSA8LSBtZWFuKCh1X2kgLSB1X2opXjIpCiAgICB9CiAgfQogIEwgPC0gbWF4KGRpc3NpbSkKICB3IDwtIChMIC0gZGlzc2ltKS9MCiAgcmV0dXJuICh3KQp9CmBgYAoKYGBge3J9Cm1zZF93ZWlnaHRfbXMgPC0gbXNkX3dlaWdodChtc190cmFpbl9tYXQpCnNhdmUobXNkX3dlaWdodF9tcywgZmlsZT0iLi4vb3V0cHV0L21zZF93ZWlnaHRfbXNfdHJhaW4uUkRhdGEiKQpgYGAKCmBgYHtyfQptc2Rfd2VpZ2h0MiA8LSBmdW5jdGlvbihkZil7CiAgbl91c2VyIDwtIGRpbShkZilbMV0KICBuX2l0ZW0gPC0gZGltKGRmKVsyXQogIGMgPC0gZGYKICBjW3doaWNoKGM+MCldID0gMQogIHMgPC0gZGYKICBkaXNzaW0gPC0gbWF0cml4KE5BLCBuX3VzZXIsIG5fdXNlcikKICB1c2VyIDwtIHJvd25hbWVzKGRmKQogIGNvbG5hbWVzKGRpc3NpbSkgPC0gdXNlcgogIHJvd25hbWVzKGRpc3NpbSkgPC0gdXNlcgogIGZvciAoaSBpbiAxOm5fdXNlcil7CiAgICBmb3IgKGogaW4gMTpuX3VzZXIpewogICAgICB0IDwtIDAKICAgICAgYiA8LSAwCiAgICAgIGZvciAobiBpbiAxOm5faXRlbSl7CiAgICAgICAgdCA8LSB0ICsgY1tpLG5dKmNbaixuXSooc1tpLG5dLXNbaixuXSleMgogICAgICAgIGIgPC0gYiArIGNbaSxuXSpjW2osbl0KICAgICAgfQogICAgICBkaXNzaW1baSxqXSA8LSB0L2IKICAgICAgcHJpbnQocGFzdGUoaSxqLHQsYixkaXNzaW0pKQogICAgfQogIH0KICBMIDwtIG1heChkaXNzaW0pCiAgdyA8LSAoTCAtIGRpc3NpbSkvTAogIHJldHVybiAodykKfQpgYGAKCgoKCgoKCgo=</div>
 
 
 
