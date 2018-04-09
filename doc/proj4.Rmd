@@ -1,0 +1,31 @@
+---
+title: "proj4"
+output: html_notebook
+---
+
+# dataset
+```{r}
+#ms
+ms_train <- read.csv("../data/MS_sample/data_train.csv")[,-1]
+ms_test <- read.csv("../data/MS_sample/data_test.csv")[,-1]
+#movie
+movie_train <- read.csv("../data/eachmovie_sample/data_train.csv")[,-1]
+movie_test <- read.csv("../data/eachmovie_sample/data_test.csv")[,-1]
+```
+
+# preprocess
+```{r}
+load("../output/ms_train_mat.Rdata")
+```
+
+# Memory- based Algorithm
+## Similarity Weight
+### Pearson Correlation(not required)
+```{r}
+pearson_ms_train <- cor(t(ms_train_mat), method = "pearson")
+```
+
+### Spearman Correlation(1,2)
+```{r}
+spearman_ms_train <- cor(t(ms_train_mat), method = "spearman")
+```
