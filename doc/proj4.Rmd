@@ -5,10 +5,10 @@ output: html_notebook
 
 # dataset
 ```{r}
-# ms
+#ms
 ms_train <- read.csv("../data/MS_sample/data_train.csv")[,-1]
 ms_test <- read.csv("../data/MS_sample/data_test.csv")[,-1]
-# movie
+#movie
 movie_train <- read.csv("../data/eachmovie_sample/data_train.csv")[,-1]
 movie_test <- read.csv("../data/eachmovie_sample/data_test.csv")[,-1]
 ```
@@ -31,67 +31,23 @@ pearson_weight_movie <- cor(t(movie_train_mat), method = "pearson")
 
 ### Spearman Correlation(1,2)
 ```{r}
-# ms
+#ms
 spearman_weight_ms <- cor(t(ms_train_mat), method = "spearman")
 save(spearman_weight_ms, file="../output/spearman_weight_ms.RData")
-# movie
+#movie
 spearman_weight_movie <- cor(t(movie_train_mat), method = "spearman")
 save(spearman_weight_movie, file="../output/spearman_weight_movie.RData")
 ```
 
 ### Mean-square-difference(1,2)
 ```{r}
-msd_weight <- function(df){
-  n <- dim(df)[1]
-  dissim <- matrix(NA, n, n)
-  user <- rownames(df)
-  colnames(dissim) <- user
-  rownames(dissim) <- user
-  for (i in 1:n){
-    for (j in 1:n){
-      u_i <- df[i,]
-      u_j <- df[j,]
-      dissim[i,j] <- mean((u_i - u_j)^2)
-    }
-  }
-  L <- max(dissim)
-  w <- (L - dissim)/L
-  return (w)
-}
+load("../output/msd_weight_ms.RData")
+load("../output/msd_weight_movie.RData")
 ```
 
+### SimRank(1)
 ```{r}
-msd_weight_ms <- msd_weight(ms_train_mat)
-save(msd_weight_ms, file="../output/msd_weight_ms_train.RData")
-```
-
-```{r}
-msd_weight2 <- function(df){
-  n_user <- dim(df)[1]
-  n_item <- dim(df)[2]
-  c <- df
-  c[which(c>0)] = 1
-  s <- df
-  dissim <- matrix(NA, n_user, n_user)
-  user <- rownames(df)
-  colnames(dissim) <- user
-  rownames(dissim) <- user
-  for (i in 1:n_user){
-    for (j in 1:n_user){
-      t <- 0
-      b <- 0
-      for (n in 1:n_item){
-        t <- t + c[i,n]*c[j,n]*(s[i,n]-s[j,n])^2
-        b <- b + c[i,n]*c[j,n]
-      }
-      dissim[i,j] <- t/b
-      print(paste(i,j,t,b,dissim))
-    }
-  }
-  L <- max(dissim)
-  w <- (L - dissim)/L
-  return (w)
-}
+load("../output/simrank_weight_ms.RData")
 ```
 
 

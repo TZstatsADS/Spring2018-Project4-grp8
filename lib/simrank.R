@@ -40,8 +40,8 @@ simrank <- function(C = 0.8, K = 5){
   return(res)
 }
 res <- simrank()
-simrank_weight_ms <- res[[5]][1:4151,1:4151]
-save(simrank_weight_ms, file="../output/simrank_weight_ms.RData")
+simrank_weight <- res[[5]][1:4151,1:4151]
+save(simrank_weight, file="../output/simrank_weight_ms.RData")
 
 ##basic simrank equation
 #neighbors(graph, v, mode = c("out", "in", "all", "total"))

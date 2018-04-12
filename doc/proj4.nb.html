@@ -1743,11 +1743,11 @@ pearson_movie_train &lt;- cor(t(movie_train_mat), method = &quot;pearson&quot;)<
 <h3>Spearman Correlation(1,2)</h3>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBtc1xuc3BlYXJtYW5fd2VpZ2h0X21zIDwtIGNvcih0KG1zX3RyYWluX21hdCksIG1ldGhvZCA9IFwic3BlYXJtYW5cIilcbnNhdmUoc3BlYXJtYW5fd2VpZ2h0X21zLCBmaWxlPVwiLi4vb3V0cHV0L3NwZWFybWFuX3dlaWdodF9tcy5SRGF0YVwiKVxuIyBtb3ZpZVxuc3BlYXJtYW5fd2VpZ2h0X21vdmllIDwtIGNvcih0KG1vdmllX3RyYWluX21hdCksIG1ldGhvZCA9IFwic3BlYXJtYW5cIilcbnNhdmUoc3BlYXJtYW5fd2VpZ2h0X21vdmllLCBmaWxlPVwiLi4vb3V0cHV0L3NwZWFybWFuX3dlaWdodF9tb3ZpZS5SRGF0YVwiKVxuYGBgIn0= -->
-<pre class="r"><code># ms
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuI21zXG5zcGVhcm1hbl93ZWlnaHRfbXMgPC0gY29yKHQobXNfdHJhaW5fbWF0KSwgbWV0aG9kID0gXCJzcGVhcm1hblwiKVxuc2F2ZShzcGVhcm1hbl93ZWlnaHRfbXMsIGZpbGU9XCIuLi9vdXRwdXQvc3BlYXJtYW5fd2VpZ2h0X21zLlJEYXRhXCIpXG4jbW92aWVcbnNwZWFybWFuX3dlaWdodF9tb3ZpZSA8LSBjb3IodChtb3ZpZV90cmFpbl9tYXQpLCBtZXRob2QgPSBcInNwZWFybWFuXCIpXG5zYXZlKHNwZWFybWFuX3dlaWdodF9tb3ZpZSwgZmlsZT1cIi4uL291dHB1dC9zcGVhcm1hbl93ZWlnaHRfbW92aWUuUkRhdGFcIilcbmBgYCJ9 -->
+<pre class="r"><code>#ms
 spearman_weight_ms &lt;- cor(t(ms_train_mat), method = &quot;spearman&quot;)
 save(spearman_weight_ms, file=&quot;../output/spearman_weight_ms.RData&quot;)
-# movie
+#movie
 spearman_weight_movie &lt;- cor(t(movie_train_mat), method = &quot;spearman&quot;)
 save(spearman_weight_movie, file=&quot;../output/spearman_weight_movie.RData&quot;)</code></pre>
 <!-- rnb-source-end -->
@@ -1758,64 +1758,71 @@ save(spearman_weight_movie, file=&quot;../output/spearman_weight_movie.RData&quo
 <h3>Mean-square-difference(1,2)</h3>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubXNkX3dlaWdodCA8LSBmdW5jdGlvbihkZil7XG4gIG4gPC0gZGltKGRmKVsxXVxuICBkaXNzaW0gPC0gbWF0cml4KE5BLCBuLCBuKVxuICB1c2VyIDwtIHJvd25hbWVzKGRmKVxuICBjb2xuYW1lcyhkaXNzaW0pIDwtIHVzZXJcbiAgcm93bmFtZXMoZGlzc2ltKSA8LSB1c2VyXG4gIGZvciAoaSBpbiAxOm4pe1xuICAgIGZvciAoaiBpbiAxOm4pe1xuICAgICAgdV9pIDwtIGRmW2ksXVxuICAgICAgdV9qIDwtIGRmW2osXVxuICAgICAgZGlzc2ltW2ksal0gPC0gbWVhbigodV9pIC0gdV9qKV4yKVxuICAgIH1cbiAgfVxuICBMIDwtIG1heChkaXNzaW0pXG4gIHcgPC0gKEwgLSBkaXNzaW0pL0xcbiAgcmV0dXJuICh3KVxufVxuYGBgIn0= -->
-<pre class="r"><code>msd_weight &lt;- function(df){
-  n &lt;- dim(df)[1]
-  dissim &lt;- matrix(NA, n, n)
-  user &lt;- rownames(df)
-  colnames(dissim) &lt;- user
-  rownames(dissim) &lt;- user
-  for (i in 1:n){
-    for (j in 1:n){
-      u_i &lt;- df[i,]
-      u_j &lt;- df[j,]
-      dissim[i,j] &lt;- mean((u_i - u_j)^2)
-    }
-  }
-  L &lt;- max(dissim)
-  w &lt;- (L - dissim)/L
-  return (w)
-}</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuI21zXG5tc2Rfd2VpZ2h0X21zIDwtIG1zZF93ZWlnaHQobXNfdHJhaW5fbWF0KVxuYGBgIn0= -->
+<pre class="r"><code>#ms
+msd_weight_ms &lt;- msd_weight(ms_train_mat)</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
+</div>
+<div id="simrank1" class="section level3">
+<h3>SimRank(1)</h3>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubXNkX3dlaWdodF9tcyA8LSBtc2Rfd2VpZ2h0KG1zX3RyYWluX21hdClcbnNhdmUobXNkX3dlaWdodF9tcywgZmlsZT1cIi4uL291dHB1dC9tc2Rfd2VpZ2h0X21zX3RyYWluLlJEYXRhXCIpXG5gYGAifQ== -->
-<pre class="r"><code>msd_weight_ms &lt;- msd_weight(ms_train_mat)
-save(msd_weight_ms, file=&quot;../output/msd_weight_ms_train.RData&quot;)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuI2NyZWF0ZSB0aGUgbmV0d29yayBncmFwaFxudXNlcnMgPC0gcm93bmFtZXMobXNfdHJhaW5fbWF0KVxudm90ZXMgPC0gY29sbmFtZXMobXNfdHJhaW5fbWF0KVxubm9kZXMgPC0gYyh1c2Vycywgdm90ZXMpXG5kZl9lZGdlcyA8LSBkYXRhLmZyYW1lKClcbmZvciAoaSBpbiAxOmxlbmd0aCh1c2Vycykpe1xuICBzaW5rIDwtIG5hbWVzKHdoaWNoKG1zX3RyYWluX21hdFtpLF09PTEpKVxuICBuX2VkZ2VzIDwtIGxlbmd0aChzaW5rKVxuICBlZGdlcyA8LSBkYXRhLmZyYW1lKHJlcCh1c2Vyc1tpXSxuX2VkZ2VzKSwgc2luaylcbiAgY29sbmFtZXMoZWRnZXMpIDwtIGMoXCJmcm9tXCIsXCJ0b1wiKVxuICBkZl9lZGdlcyA8LSByYmluZChkZl9lZGdlcywgZWRnZXMpICBcbn1cbmdyYXBoIDwtIGdyYXBoX2Zyb21fZGF0YV9mcmFtZShkPWRmX2VkZ2VzLCB2ZXJ0aWNlcz1ub2RlcywgZGlyZWN0ZWQ9RikgXG5ncmFwaFxuYGBgIn0= -->
+<pre class="r"><code>#create the network graph
+users &lt;- rownames(ms_train_mat)
+votes &lt;- colnames(ms_train_mat)
+nodes &lt;- c(users, votes)
+df_edges &lt;- data.frame()
+for (i in 1:length(users)){
+  sink &lt;- names(which(ms_train_mat[i,]==1))
+  n_edges &lt;- length(sink)
+  edges &lt;- data.frame(rep(users[i],n_edges), sink)
+  colnames(edges) &lt;- c(&quot;from&quot;,&quot;to&quot;)
+  df_edges &lt;- rbind(df_edges, edges)  
+}
+graph &lt;- graph_from_data_frame(d=df_edges, vertices=nodes, directed=F) 
+graph</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubXNkX3dlaWdodDIgPC0gZnVuY3Rpb24oZGYpe1xuICBuX3VzZXIgPC0gZGltKGRmKVsxXVxuICBuX2l0ZW0gPC0gZGltKGRmKVsyXVxuICBjIDwtIGRmXG4gIGNbd2hpY2goYz4wKV0gPSAxXG4gIHMgPC0gZGZcbiAgZGlzc2ltIDwtIG1hdHJpeChOQSwgbl91c2VyLCBuX3VzZXIpXG4gIHVzZXIgPC0gcm93bmFtZXMoZGYpXG4gIGNvbG5hbWVzKGRpc3NpbSkgPC0gdXNlclxuICByb3duYW1lcyhkaXNzaW0pIDwtIHVzZXJcbiAgZm9yIChpIGluIDE6bl91c2VyKXtcbiAgICBmb3IgKGogaW4gMTpuX3VzZXIpe1xuICAgICAgdCA8LSAwXG4gICAgICBiIDwtIDBcbiAgICAgIGZvciAobiBpbiAxOm5faXRlbSl7XG4gICAgICAgIHQgPC0gdCArIGNbaSxuXSpjW2osbl0qKHNbaSxuXS1zW2osbl0pXjJcbiAgICAgICAgYiA8LSBiICsgY1tpLG5dKmNbaixuXVxuICAgICAgfVxuICAgICAgZGlzc2ltW2ksal0gPC0gdC9iXG4gICAgICBwcmludChwYXN0ZShpLGosdCxiLGRpc3NpbSkpXG4gICAgfVxuICB9XG4gIEwgPC0gbWF4KGRpc3NpbSlcbiAgdyA8LSAoTCAtIGRpc3NpbSkvTFxuICByZXR1cm4gKHcpXG59XG5gYGAifQ== -->
-<pre class="r"><code>msd_weight2 &lt;- function(df){
-  n_user &lt;- dim(df)[1]
-  n_item &lt;- dim(df)[2]
-  c &lt;- df
-  c[which(c&gt;0)] = 1
-  s &lt;- df
-  dissim &lt;- matrix(NA, n_user, n_user)
-  user &lt;- rownames(df)
-  colnames(dissim) &lt;- user
-  rownames(dissim) &lt;- user
-  for (i in 1:n_user){
-    for (j in 1:n_user){
-      t &lt;- 0
-      b &lt;- 0
-      for (n in 1:n_item){
-        t &lt;- t + c[i,n]*c[j,n]*(s[i,n]-s[j,n])^2
-        b &lt;- b + c[i,n]*c[j,n]
-      }
-      dissim[i,j] &lt;- t/b
-      print(paste(i,j,t,b,dissim))
-    }
+<!-- rnb-output-begin eyJkYXRhIjoiSUdSQVBIIGYyZGM3MGIgVU4tLSA0NDIwIDMzODc1IC0tIFxuKyBhdHRyOiBuYW1lICh2L2MpXG4rIGVkZ2VzIGZyb20gZjJkYzcwYiAodmVydGV4IG5hbWVzKTpcbiBbMV0gMTAwMTAtLTEwMDAgMTAwMTAtLTEwMTAgMTAwMTAtLTEwMTEgMTAwMTAtLTEwMTIgMTAwMTAtLTEwMTMgMTAwMTAtLTEwMTRcbiBbN10gMTAwMTktLTEwMDIgMTAwMTktLTEwMDMgMTAwMTktLTEwMDQgMTAwMTktLTEwMDggMTAwMTktLTEwMTcgMTAwMTktLTEwMThcblsxM10gMTAwMTktLTEwMjkgMTAwMTktLTEwMzAgMTAwMTktLTEwMzEgMTAwMTktLTEwMzIgMTAwMTktLTEwMzMgMTAwMjEtLTEwMDRcblsxOV0gMTAwMjEtLTEwMDggMTAwMjEtLTEwMDkgMTAwMjEtLTEwMTcgMTAwMjEtLTEwMTggMTAwMjEtLTEwMjYgMTAwMjEtLTEwMzJcblsyNV0gMTAwMjEtLTEwMzQgMTAwMjEtLTEwMzUgMTAwMjEtLTEwMzYgMTAwMjEtLTEwMzcgMTAwMjEtLTEwMzggMTAwMjEtLTEwMzlcblszMV0gMTAwMjEtLTEwNDAgMTAwMjEtLTEwNDEgMTAwMjEtLTEwNDIgMTAwMjEtLTEwNDMgMTAwMzEtLTEwMDEgMTAwMzEtLTEwMDJcblszN10gMTAwMzEtLTEwMDMgMTAwMzEtLTEwMDggMTAwMzEtLTEwMDkgMTAwMzEtLTEwMTggMTAwMzEtLTEwMjcgMTAwMzEtLTEwMzFcbls0M10gMTAwMzEtLTEwMzQgMTAwMzEtLTEwMzUgMTAwMzEtLTEwNDEgMTAwMzEtLTEwNDUgMTAwMzEtLTEwNDYgMTAwMzEtLTEwNDlcbisgLi4uIG9taXR0ZWQgc2V2ZXJhbCBlZGdlc1xuIn0= -->
+<pre><code>IGRAPH f2dc70b UN-- 4420 33875 -- 
++ attr: name (v/c)
++ edges from f2dc70b (vertex names):
+ [1] 10010--1000 10010--1010 10010--1011 10010--1012 10010--1013 10010--1014
+ [7] 10019--1002 10019--1003 10019--1004 10019--1008 10019--1017 10019--1018
+[13] 10019--1029 10019--1030 10019--1031 10019--1032 10019--1033 10021--1004
+[19] 10021--1008 10021--1009 10021--1017 10021--1018 10021--1026 10021--1032
+[25] 10021--1034 10021--1035 10021--1036 10021--1037 10021--1038 10021--1039
+[31] 10021--1040 10021--1041 10021--1042 10021--1043 10031--1001 10031--1002
+[37] 10031--1003 10031--1008 10031--1009 10031--1018 10031--1027 10031--1031
+[43] 10031--1034 10031--1035 10031--1041 10031--1045 10031--1046 10031--1049
++ ... omitted several edges</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc2F2ZShncmFwaCwgZmlsZT1cIi4uL291dHB1dC9ncmFwaF9tcy5SRGF0YVwiKVxuI2FkamFjZW5jeSBtYXRyaXhcbkEgPC0gYXNfYWRqYWNlbmN5X21hdHJpeChncmFwaClcbkEgPC0gYXMubWF0cml4KEEsIFwiYWRqYWNlbmN5XCIpXG4jbm9ybWFsaXplZCBieSBjb2x1bW5zXG5XIDwtIHNjYWxlKEEsIGNlbnRlcj1GQUxTRSwgc2NhbGU9Y29sU3VtcyhBKSlcbkkgPC0gZGlhZyhsZW5ndGgobm9kZXMpKVxuUyA8LSBkaWFnKGxlbmd0aChub2RlcykpXG5zaW1yYW5rIDwtIGZ1bmN0aW9uKEMgPSAwLjgsIEsgPSA1KXtcbiAgcmVzIDwtIGxpc3QoKVxuICBmb3IgKGsgaW4gMTpLKXtcbiAgICBYIDwtIHQoVykgJSolIFMgJSolIFdcbiAgICBEIDwtIElcbiAgICBkaWFnKEQpIDwtIGRpYWcoWClcbiAgICBTIDwtIEMqWCAtIEMqRCArIElcbiAgICByZXNbW2tdXSA8LSBTXG4gIH1cbiAgcmV0dXJuKHJlcylcbn1cbiNyZXMgPC0gc2ltcmFuaygpXG4jc2ltcmFua193ZWlnaHQgPC0gcmVzW1s1XV1bMTo0MTUxLDE6NDE1MV1cbiNzYXZlKHNpbXJhbmtfd2VpZ2h0LCBmaWxlPVwiLi4vb3V0cHV0L3NpbXJhbmtfd2VpZ2h0X21zLlJEYXRhXCIpXG5sb2FkKFwiLi4vb3V0cHV0L3NpbXJhbmtfd2VpZ2h0X21zLlJEYXRhXCIpXG5gYGAifQ== -->
+<pre class="r"><code>save(graph, file=&quot;../output/graph_ms.RData&quot;)
+#adjacency matrix
+A &lt;- as_adjacency_matrix(graph)
+A &lt;- as.matrix(A, &quot;adjacency&quot;)
+#normalized by columns
+W &lt;- scale(A, center=FALSE, scale=colSums(A))
+I &lt;- diag(length(nodes))
+S &lt;- diag(length(nodes))
+simrank &lt;- function(C = 0.8, K = 5){
+  res &lt;- list()
+  for (k in 1:K){
+    X &lt;- t(W) %*% S %*% W
+    D &lt;- I
+    diag(D) &lt;- diag(X)
+    S &lt;- C*X - C*D + I
+    res[[k]] &lt;- S
   }
-  L &lt;- max(dissim)
-  w &lt;- (L - dissim)/L
-  return (w)
-}</code></pre>
+  return(res)
+}
+#res &lt;- simrank()
+#simrank_weight &lt;- res[[5]][1:4151,1:4151]
+#save(simrank_weight, file=&quot;../output/simrank_weight_ms.RData&quot;)
+load(&quot;../output/simrank_weight_ms.RData&quot;)</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
@@ -1824,7 +1831,7 @@ save(msd_weight_ms, file=&quot;../output/msd_weight_ms_train.RData&quot;)</code>
 </div>
 </div>
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAicHJvajQiCm91dHB1dDogaHRtbF9ub3RlYm9vawotLS0KCiMgZGF0YXNldApgYGB7cn0KIyBtcwptc190cmFpbiA8LSByZWFkLmNzdigiLi4vZGF0YS9NU19zYW1wbGUvZGF0YV90cmFpbi5jc3YiKVssLTFdCm1zX3Rlc3QgPC0gcmVhZC5jc3YoIi4uL2RhdGEvTVNfc2FtcGxlL2RhdGFfdGVzdC5jc3YiKVssLTFdCiMgbW92aWUKbW92aWVfdHJhaW4gPC0gcmVhZC5jc3YoIi4uL2RhdGEvZWFjaG1vdmllX3NhbXBsZS9kYXRhX3RyYWluLmNzdiIpWywtMV0KbW92aWVfdGVzdCA8LSByZWFkLmNzdigiLi4vZGF0YS9lYWNobW92aWVfc2FtcGxlL2RhdGFfdGVzdC5jc3YiKVssLTFdCmBgYAoKIyBwcmVwcm9jZXNzCmBgYHtyfQpsb2FkKCIuLi9vdXRwdXQvbXNfdHJhaW5fbWF0LlJEYXRhIikKbG9hZCgiLi4vb3V0cHV0L21zX3Rlc3RfbWF0LlJEYXRhIikKbG9hZCgiLi4vb3V0cHV0L21vdmllX3RyYWluX21hdC5SRGF0YSIpCmxvYWQoIi4uL291dHB1dC9tb3ZpZV90ZXN0X21hdC5SRGF0YSIpCmBgYAoKIyBNZW1vcnktIGJhc2VkIEFsZ29yaXRobQojIyBTaW1pbGFyaXR5IFdlaWdodAojIyMgUGVhcnNvbiBDb3JyZWxhdGlvbihub3QgcmVxdWlyZWQpCmBgYHtyfQpwZWFyc29uX3dlaWdodF9tcyA8LSBjb3IodChtc190cmFpbl9tYXQpLCBtZXRob2QgPSAicGVhcnNvbiIpCnBlYXJzb25fd2VpZ2h0X21vdmllIDwtIGNvcih0KG1vdmllX3RyYWluX21hdCksIG1ldGhvZCA9ICJwZWFyc29uIikKYGBgCgojIyMgU3BlYXJtYW4gQ29ycmVsYXRpb24oMSwyKQpgYGB7cn0KIyBtcwpzcGVhcm1hbl93ZWlnaHRfbXMgPC0gY29yKHQobXNfdHJhaW5fbWF0KSwgbWV0aG9kID0gInNwZWFybWFuIikKc2F2ZShzcGVhcm1hbl93ZWlnaHRfbXMsIGZpbGU9Ii4uL291dHB1dC9zcGVhcm1hbl93ZWlnaHRfbXMuUkRhdGEiKQojIG1vdmllCnNwZWFybWFuX3dlaWdodF9tb3ZpZSA8LSBjb3IodChtb3ZpZV90cmFpbl9tYXQpLCBtZXRob2QgPSAic3BlYXJtYW4iKQpzYXZlKHNwZWFybWFuX3dlaWdodF9tb3ZpZSwgZmlsZT0iLi4vb3V0cHV0L3NwZWFybWFuX3dlaWdodF9tb3ZpZS5SRGF0YSIpCmBgYAoKIyMjIE1lYW4tc3F1YXJlLWRpZmZlcmVuY2UoMSwyKQpgYGB7cn0KbXNkX3dlaWdodCA8LSBmdW5jdGlvbihkZil7CiAgbiA8LSBkaW0oZGYpWzFdCiAgZGlzc2ltIDwtIG1hdHJpeChOQSwgbiwgbikKICB1c2VyIDwtIHJvd25hbWVzKGRmKQogIGNvbG5hbWVzKGRpc3NpbSkgPC0gdXNlcgogIHJvd25hbWVzKGRpc3NpbSkgPC0gdXNlcgogIGZvciAoaSBpbiAxOm4pewogICAgZm9yIChqIGluIDE6bil7CiAgICAgIHVfaSA8LSBkZltpLF0KICAgICAgdV9qIDwtIGRmW2osXQogICAgICBkaXNzaW1baSxqXSA8LSBtZWFuKCh1X2kgLSB1X2opXjIpCiAgICB9CiAgfQogIEwgPC0gbWF4KGRpc3NpbSkKICB3IDwtIChMIC0gZGlzc2ltKS9MCiAgcmV0dXJuICh3KQp9CmBgYAoKYGBge3J9Cm1zZF93ZWlnaHRfbXMgPC0gbXNkX3dlaWdodChtc190cmFpbl9tYXQpCnNhdmUobXNkX3dlaWdodF9tcywgZmlsZT0iLi4vb3V0cHV0L21zZF93ZWlnaHRfbXNfdHJhaW4uUkRhdGEiKQpgYGAKCmBgYHtyfQptc2Rfd2VpZ2h0MiA8LSBmdW5jdGlvbihkZil7CiAgbl91c2VyIDwtIGRpbShkZilbMV0KICBuX2l0ZW0gPC0gZGltKGRmKVsyXQogIGMgPC0gZGYKICBjW3doaWNoKGM+MCldID0gMQogIHMgPC0gZGYKICBkaXNzaW0gPC0gbWF0cml4KE5BLCBuX3VzZXIsIG5fdXNlcikKICB1c2VyIDwtIHJvd25hbWVzKGRmKQogIGNvbG5hbWVzKGRpc3NpbSkgPC0gdXNlcgogIHJvd25hbWVzKGRpc3NpbSkgPC0gdXNlcgogIGZvciAoaSBpbiAxOm5fdXNlcil7CiAgICBmb3IgKGogaW4gMTpuX3VzZXIpewogICAgICB0IDwtIDAKICAgICAgYiA8LSAwCiAgICAgIGZvciAobiBpbiAxOm5faXRlbSl7CiAgICAgICAgdCA8LSB0ICsgY1tpLG5dKmNbaixuXSooc1tpLG5dLXNbaixuXSleMgogICAgICAgIGIgPC0gYiArIGNbaSxuXSpjW2osbl0KICAgICAgfQogICAgICBkaXNzaW1baSxqXSA8LSB0L2IKICAgICAgcHJpbnQocGFzdGUoaSxqLHQsYixkaXNzaW0pKQogICAgfQogIH0KICBMIDwtIG1heChkaXNzaW0pCiAgdyA8LSAoTCAtIGRpc3NpbSkvTAogIHJldHVybiAodykKfQpgYGAKCgoKCgoKCgo=</div>
+<div id="rmd-source-code">LS0tCnRpdGxlOiAicHJvajQiCm91dHB1dDogaHRtbF9ub3RlYm9vawotLS0KCiMgZGF0YXNldApgYGB7cn0KI21zCm1zX3RyYWluIDwtIHJlYWQuY3N2KCIuLi9kYXRhL01TX3NhbXBsZS9kYXRhX3RyYWluLmNzdiIpWywtMV0KbXNfdGVzdCA8LSByZWFkLmNzdigiLi4vZGF0YS9NU19zYW1wbGUvZGF0YV90ZXN0LmNzdiIpWywtMV0KI21vdmllCm1vdmllX3RyYWluIDwtIHJlYWQuY3N2KCIuLi9kYXRhL2VhY2htb3ZpZV9zYW1wbGUvZGF0YV90cmFpbi5jc3YiKVssLTFdCm1vdmllX3Rlc3QgPC0gcmVhZC5jc3YoIi4uL2RhdGEvZWFjaG1vdmllX3NhbXBsZS9kYXRhX3Rlc3QuY3N2IilbLC0xXQpgYGAKCiMgcHJlcHJvY2VzcwpgYGB7cn0KbG9hZCgiLi4vb3V0cHV0L21zX3RyYWluX21hdC5SRGF0YSIpCmxvYWQoIi4uL291dHB1dC9tc190ZXN0X21hdC5SRGF0YSIpCmxvYWQoIi4uL291dHB1dC9tb3ZpZV90cmFpbl9tYXQuUkRhdGEiKQpsb2FkKCIuLi9vdXRwdXQvbW92aWVfdGVzdF9tYXQuUkRhdGEiKQpgYGAKCiMgTWVtb3J5LSBiYXNlZCBBbGdvcml0aG0KIyMgU2ltaWxhcml0eSBXZWlnaHQKIyMjIFBlYXJzb24gQ29ycmVsYXRpb24obm90IHJlcXVpcmVkKQpgYGB7cn0KcGVhcnNvbl93ZWlnaHRfbXMgPC0gY29yKHQobXNfdHJhaW5fbWF0KSwgbWV0aG9kID0gInBlYXJzb24iKQpwZWFyc29uX3dlaWdodF9tb3ZpZSA8LSBjb3IodChtb3ZpZV90cmFpbl9tYXQpLCBtZXRob2QgPSAicGVhcnNvbiIpCmBgYAoKIyMjIFNwZWFybWFuIENvcnJlbGF0aW9uKDEsMikKYGBge3J9CiNtcwpzcGVhcm1hbl93ZWlnaHRfbXMgPC0gY29yKHQobXNfdHJhaW5fbWF0KSwgbWV0aG9kID0gInNwZWFybWFuIikKc2F2ZShzcGVhcm1hbl93ZWlnaHRfbXMsIGZpbGU9Ii4uL291dHB1dC9zcGVhcm1hbl93ZWlnaHRfbXMuUkRhdGEiKQojbW92aWUKc3BlYXJtYW5fd2VpZ2h0X21vdmllIDwtIGNvcih0KG1vdmllX3RyYWluX21hdCksIG1ldGhvZCA9ICJzcGVhcm1hbiIpCnNhdmUoc3BlYXJtYW5fd2VpZ2h0X21vdmllLCBmaWxlPSIuLi9vdXRwdXQvc3BlYXJtYW5fd2VpZ2h0X21vdmllLlJEYXRhIikKYGBgCgojIyMgTWVhbi1zcXVhcmUtZGlmZmVyZW5jZSgxLDIpCmBgYHtyfQpsb2FkKCIuLi9vdXRwdXQvbXNkX3dlaWdodF9tcy5SRGF0YSIpCmxvYWQoIi4uL291dHB1dC9tc2Rfd2VpZ2h0X21vdmllLlJEYXRhIikKYGBgCgojIyMgU2ltUmFuaygxKQpgYGB7cn0KbG9hZCgiLi4vb3V0cHV0L3NpbXJhbmtfd2VpZ2h0X21zLlJEYXRhIikKYGBgCgoKCgoKCgoK</div>
 
 
 
