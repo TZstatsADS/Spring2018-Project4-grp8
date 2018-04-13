@@ -5,10 +5,10 @@ output: html_notebook
 
 # dataset
 ```{r}
-#ms
+# ms
 ms_train <- read.csv("../data/MS_sample/data_train.csv")[,-1]
 ms_test <- read.csv("../data/MS_sample/data_test.csv")[,-1]
-#movie
+# movie
 movie_train <- read.csv("../data/eachmovie_sample/data_train.csv")[,-1]
 movie_test <- read.csv("../data/eachmovie_sample/data_test.csv")[,-1]
 ```
@@ -25,30 +25,145 @@ load("../output/movie_test_mat.RData")
 ## Similarity Weight
 ### Pearson Correlation(not required)
 ```{r}
+# ms
 pearson_weight_ms <- cor(t(ms_train_mat), method = "pearson")
-pearson_weight_movie <- cor(t(movie_train_mat), method = "pearson")
+save(pearson_weight_ms, file="../output/pearson_weight_ms.RData")
+# movie
+pearson_weight_movie <- cor(t(movie_train_mat), method = "pearson", use = "pairwise.complete.obs")
+save(pearson_weight_movie, file="../output/pearson_weight_movie.RData")
 ```
 
 ### Spearman Correlation(1,2)
 ```{r}
-#ms
+# ms
 spearman_weight_ms <- cor(t(ms_train_mat), method = "spearman")
 save(spearman_weight_ms, file="../output/spearman_weight_ms.RData")
-#movie
-spearman_weight_movie <- cor(t(movie_train_mat), method = "spearman")
+# movie
+spearman_weight_movie <- cor(t(movie_train_mat), method = "spearman", use = "pairwise.complete.obs")
 save(spearman_weight_movie, file="../output/spearman_weight_movie.RData")
 ```
 
 ### Mean-square-difference(1,2)
 ```{r}
-load("../output/msd_weight_ms.RData")
-load("../output/msd_weight_movie.RData")
+msd_weight <- function(df){
+  n <- dim(df)[1]
+  dissim <- matrix(NA, n, n)
+  user <- rownames(df)
+  colnames(dissim) <- user
+  rownames(dissim) <- user
+  for (i in 1:n){
+    for (j in 1:n){
+      u_i <- df[i,]
+      u_j <- df[j,]
+      dissim[i,j] <- mean((u_i - u_j)^2)
+    }
+  }
+  L <- max(dissim)
+  w <- (L - dissim)/L
+  return (w)
+}
 ```
 
-### SimRank(1)
 ```{r}
-load("../output/simrank_weight_ms.RData")
+msd_weight_ms <- msd_weight(ms_train_mat)
+save(msd_weight_ms, file="../output/msd_weight_ms_train.RData")
 ```
+
+```{r}
+msd_weight2 <- function(df){
+  n_user <- dim(df)[1]
+  n_item <- dim(df)[2]
+  c <- df
+  c[which(c>0)] = 1
+  s <- df
+  dissim <- matrix(NA, n_user, n_user)
+  user <- rownames(df)
+  colnames(dissim) <- user
+  rownames(dissim) <- user
+  for (i in 1:n_user){
+    for (j in 1:n_user){
+      t <- 0
+      b <- 0
+      for (n in 1:n_item){
+        t <- t + c[i,n]*c[j,n]*(s[i,n]-s[j,n])^2
+        b <- b + c[i,n]*c[j,n]
+      }
+      dissim[i,j] <- t/b
+      print(paste(i,j,t,b,dissim))
+    }
+  }
+  L <- max(dissim)
+  w <- (L - dissim)/L
+  return (w)
+}
+```
+
+## Selecting n-neighboors
+```{r}
+# load data
+load("../output/pearson_weight_ms.RData")
+load("../output/pearson_weight_movie.RData")
+load("../output/spearman_weight_ms.RData")
+load("../output/spearman_weight_movie.RData")
+load("../output/spearman_weight_ms.RData")
+
+# Selecting neighboor function
+selectNeighbor<- function(mat, n){
+   for (i in 1:nrow(mat)){
+     thre <- sort(mat[i,], decreasing = T)[n]
+      for (j in 1:ncol(mat)) {
+       if (is.na(mat[i,j])==FALSE & is.na(thre)==FALSE){
+        mat[i,j] <- ifelse(mat[i,j]>=thre, mat[i,j], NA)
+       } else{
+         mat[i,j] <- NA
+       }
+     }
+   }
+   return(mat)
+}
+ 
+# MS 
+## n=20 all
+ms_pearson20 <- selectNeighbor(pearson_weight_ms, 20)
+save(ms_pearson20, file="../output/selectNeighbor/ms_pearson20.RData")
+
+ms_spearman20 <- selectNeighbor(spearman_weight_ms, 20)
+save(ms_spearman20, file="../output/selectNeighbor/ms_spearman20.RData")
+
+ms_variance20 <- selectNeighbor(mat_variance_weight_MS, 20)
+save(ms_variance20, file="../output/selectNeighbor/ms_variance20.RData")
+
+
+## n=50 all
+ms_pearson50 <- selectNeighbor(pearson_weight_ms, 50)
+save(ms_pearson50, file="../output/selectNeighbor/ms_pearson50.RData")
+
+ms_pearson50 <- selectNeighbor(pearson_weight_ms, 50)
+save(ms_pearson50, file="../output/selectNeighbor/ms_pearson50.RData")
+
+ms_variance50 <- selectNeighbor(mat_variance_weight_MS, 50)
+save(ms_variance50, file="../output/selectNeighbor/ms_variance50.RData")
+
+
+# Movie 
+## n=20 all 
+movie_pearson20 <- selectNeighbor(pearson_weight_movie, 20)
+save(movie_pearson20, file="../output/selectNeighbor/movie_pearson20.RData")
+
+movie_spearman20 <- selectNeighbor(movie_train_mat, spearman_weight_movie, 20)
+save(movie_spearman20, file="../output/selectNeighbor/movie_spearman20.RData")
+
+## n=50 all
+movie_pearson50 <- selectNeighbor(movie_train_mat, pearson_weight_movie, 50)
+save(movie_pearson50, file="../output/selectNeighbor/movie_pearson50.RData")
+
+movie_pearson50 <- selectNeighbor(movie_train_mat, pearson_weight_movie, 50)
+save(movie_pearson50, file="../output/selectNeighbor/movie_pearson50.RData")
+
+# 
+```
+
+
 
 
 
