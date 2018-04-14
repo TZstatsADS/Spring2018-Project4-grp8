@@ -65,6 +65,10 @@ msd_weight <- function(df){
 ```
 
 ```{r}
+<<<<<<< HEAD
+load("../output/simrank_weight_ms.RData")
+```
+=======
 msd_weight_ms <- msd_weight(ms_train_mat)
 save(msd_weight_ms, file="../output/msd_weight_ms_train.RData")
 ```
@@ -172,3 +176,4 @@ save(movie_pearson50, file="../output/selectNeighbor/movie_pearson50.RData")
 
 
 
+>>>>>>> 4f072b25a068612d9d7403376d54671c05a36bb7

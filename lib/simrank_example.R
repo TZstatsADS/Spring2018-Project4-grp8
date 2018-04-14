@@ -6,11 +6,11 @@ colnames(edges) <- c("from","to")
 graph <- graph_from_data_frame(d=edges, vertices=nodes, directed=F)
 graph
 plot(graph)
-##matrix representation of SimRank
-#adjacency matrix
+## matrix representation of SimRank
+# adjacency matrix
 A <- as_adjacency_matrix(graph)
 A <- as.matrix(A, "adjacency")
-#normalized by columns
+# normalized by columns
 W <- scale(A, center=FALSE, scale=colSums(A))
 I <- diag(length(nodes))
 S <- diag(length(nodes))
@@ -26,4 +26,3 @@ simrank <- function(C = 0.8, K = 5){
   return(res)
 }
 simrank()
-

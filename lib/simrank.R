@@ -1,10 +1,10 @@
-##ms
-#load pkg and data
+# ms
+# load pkg and data
 library("igraph")
 setwd("~/Documents/GitHub/Spring2018-Project4-grp-8/lib")
 load("../output/ms_train_mat.RData")
 
-#create the network graph
+# create the network graph
 users <- rownames(ms_train_mat)
 votes <- colnames(ms_train_mat)
 nodes <- c(users, votes)
@@ -20,31 +20,30 @@ graph <- graph_from_data_frame(d=df_edges, vertices=nodes, directed=F)
 graph
 save(graph, file="../output/graph_ms.RData")
 
-##matrix representation of SimRank
-#adjacency matrix
+## matrix representation of simrank
+# adjacency matrix
 A <- as_adjacency_matrix(graph)
 A <- as.matrix(A, "adjacency")
-#normalized by columns
+# normalized by columns
 W <- scale(A, center=FALSE, scale=colSums(A))
 I <- diag(length(nodes))
 S <- diag(length(nodes))
 simrank <- function(C = 0.8, K = 5){
-  res <- list()
+  #res <- list()
   for (k in 1:K){
     X <- t(W) %*% S %*% W
     D <- I
     diag(D) <- diag(X)
     S <- C*X - C*D + I
-    res[[k]] <- S
+    #res[[k]] <- S
   }
-  return(res)
+  return(S)
 }
-res <- simrank()
-simrank_weight <- res[[5]][1:4151,1:4151]
+simrank_weight <- simrank()[1:4151,1:4151]
 save(simrank_weight, file="../output/simrank_weight_ms.RData")
 
-##basic simrank equation
-#neighbors(graph, v, mode = c("out", "in", "all", "total"))
+## basic simrank equation
+# neighbors(graph, v, mode = c("out", "in", "all", "total"))
 get_votes <- function(user){
   votes <- neighbors(graph, user, mode = "out")
   return(votes)
@@ -55,7 +54,7 @@ get_users <- function(vote){
   return(users)
 }
 
-#simrank
+# simrank
 user_sim <- diag(length(users))
 vote_sim <- diag(length(votes))
 
