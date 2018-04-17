@@ -15,7 +15,7 @@ MS_test <- read.csv("~/Documents/GitHub/Spring2018-Project4-grp-8/data/MS_sample
 
 # Preprocess
 ```{r}
-source("/Users/yuexuanhuang/Documents/GitHub/Spring2018-Project4-grp-8/lib/data_preprocess.R")
+source("~/Documents/GitHub/Spring2018-Project4-grp-8/lib/data_preprocess.R")
 movie_train <- Transformer(movie_train)
 movie_test <- Transformer(movie_test)
 # save(movie_train, file = "~/Documents/GitHub/Spring2018-Project4-grp-8/output/clean_movie_train.RData")
@@ -111,7 +111,7 @@ MS_test <- Transformer2(MS_test)
 ## Selecting n-neighboors & prediction
 ```{r}
 # select_n_neighbour
-source("/Users/yuexuanhuang/Documents/GitHub/Spring2018-Project4-grp-8/lib/select_n_neighbour.R")
+source("~/Documents/GitHub/Spring2018-Project4-grp-8/lib/select_n_neighbour.R")
 
 adjust <- function(matrix){
   matrix[is.na(matrix)] <- 0
@@ -119,15 +119,15 @@ adjust <- function(matrix){
 }
 
 # prediction
-source("/Users/yuexuanhuang/Documents/GitHub/Spring2018-Project4-grp-8/lib/prediction.R")
+source("~/Documents/GitHub/Spring2018-Project4-grp-8/lib/prediction.R")
 ```
 
 ## pearson
 ```{r}
-load('/Users/yuexuanhuang/Documents/GitHub/Spring2018-Project4-grp-8/output/weight_martix/movie/pearson_weight_movie.RData')
+load('~/Documents/GitHub/Spring2018-Project4-grp-8/output/weight_martix/movie/pearson_weight_movie.RData')
 pearson_weight_movie <- adjust(pearson_weight_movie)
 
-load('/Users/yuexuanhuang/Documents/GitHub/Spring2018-Project4-grp-8/output/weight_martix/ms/pearson_weight_ms.RData')
+load('~/Documents/GitHub/Spring2018-Project4-grp-8/output/weight_martix/ms/pearson_weight_ms.RData')
 pearson_weight_ms <- adjust(pearson_weight_ms)
 
 pr.movie.neighbor =  neighbors.select(pearson_weight_movie, n = 20)
@@ -136,16 +136,25 @@ pr.MS.neighbor = neighbors.select(pearson_weight_ms, n = 20)
 pr.movie.pred = pred.matrix.movie(simweights =pearson_weight_movie, top.neighbors = pr.movie.neighbor)
 pr.MS.pred = pred.matrix.ms(simweights =pearson_weight_ms, top.neighbors = pr.MS.neighbor)
 
-# save(pr.movie.pred, file="/Users/yuexuanhuang/Documents/GitHub/Spring2018-Project4-grp-8/output/prediction/movie/pred_pearson_movie.RData")
-# save(pr.MS.pred, file="/Users/yuexuanhuang/Documents/GitHub/Spring2018-Project4-grp-8/output/prediction/ms/pred_pearson_ms.RData")
+# save(pr.movie.pred, file="~/Documents/GitHub/Spring2018-Project4-grp-8/output/prediction/movie/pred_pearson_movie.RData")
+# save(pr.MS.pred, file="~/Documents/GitHub/Spring2018-Project4-grp-8/output/prediction/ms/pred_pearson_ms.RData")
+
+pr.movie.neighbor1 =  neighbors.select(pearson_weight_movie, n = 50)
+pr.MS.neighbor1= neighbors.select(pearson_weight_ms, n = 50)
+
+pr.movie.pred1 = pred.matrix.movie(simweights =pearson_weight_movie, top.neighbors = pr.movie.neighbor1)
+pr.MS.pred1 = pred.matrix.ms(simweights =pearson_weight_ms, top.neighbors = pr.MS.neighbor1)
+
+# save(pr.movie.pred1,file="~/Documents/GitHub/Spring2018-Project4-grp-8/output/prediction/movie/pred_pearson_movie1.RData")
+# save(pr.MS.pred1, file="~/Documents/GitHub/Spring2018-Project4-grp-8/output/prediction/ms/pred_pearson_ms1.RData")
 ```
 
 ## spearman
 ```{r}
-load('/Users/yuexuanhuang/Documents/GitHub/Spring2018-Project4-grp-8/output/weight_martix/movie/spearman_weight_movie.RData')
+load('~/Documents/GitHub/Spring2018-Project4-grp-8/output/weight_martix/movie/spearman_weight_movie.RData')
 spearman_weight_movie <- adjust(spearman_weight_movie)
 
-load('/Users/yuexuanhuang/Documents/GitHub/Spring2018-Project4-grp-8/output/weight_martix/ms/spearman_weight_ms.RData')
+load('~/Documents/GitHub/Spring2018-Project4-grp-8/output/weight_martix/ms/spearman_weight_ms.RData')
 spearman_weight_ms <- adjust(spearman_weight_ms)
 
 sp.movie.neighbor =  neighbors.select(spearman_weight_movie, n = 20)
@@ -154,16 +163,25 @@ sp.MS.neighbor = neighbors.select(spearman_weight_ms, n = 20)
 sp.movie.pred = pred.matrix.movie(simweights =spearman_weight_movie, top.neighbors = sp.movie.neighbor)
 sp.MS.pred = pred.matrix.ms(simweights =spearman_weight_ms, top.neighbors = sp.MS.neighbor)
 
-# save(sp.movie.pred, file="/Users/yuexuanhuang/Documents/GitHub/Spring2018-Project4-grp-8/output/prediction/movie/pred_spearman_movie.RData")
-# save(sp.MS.pred, file="/Users/yuexuanhuang/Documents/GitHub/Spring2018-Project4-grp-8/output/prediction/ms/pred_spearman_ms.RData")
+# save(sp.movie.pred, file="~/Documents/GitHub/Spring2018-Project4-grp-8/output/prediction/movie/pred_spearman_movie.RData")
+# save(sp.MS.pred, file="~/Documents/GitHub/Spring2018-Project4-grp-8/output/prediction/ms/pred_spearman_ms.RData")
+
+sp.movie.neighbor1 =  neighbors.select(spearman_weight_movie, n = 50)
+sp.MS.neighbor1 = neighbors.select(spearman_weight_ms, n = 50)
+
+sp.movie.pred1 = pred.matrix.movie(simweights =spearman_weight_movie, top.neighbors = sp.movie.neighbor1)
+sp.MS.pred1 = pred.matrix.ms(simweights =spearman_weight_ms, top.neighbors = sp.MS.neighbor1)
+
+# save(sp.movie.pred1,file="~/Documents/GitHub/Spring2018-Project4-grp-8/output/prediction/movie/pred_spearman_movie1.RData")
+# save(sp.MS.pred1, file="~/Documents/GitHub/Spring2018-Project4-grp-8/output/prediction/ms/pred_spearman_ms1.RData")
 ```
 
 ## msd
 ```{r}
-load('/Users/yuexuanhuang/Documents/GitHub/Spring2018-Project4-grp-8/output/weight_martix/movie/msd_weight_movie.RData')
+load('~/Documents/GitHub/Spring2018-Project4-grp-8/output/weight_martix/movie/msd_weight_movie.RData')
 msd_weight_movie <- adjust(msd_weight_movie)
 
-load('/Users/yuexuanhuang/Documents/GitHub/Spring2018-Project4-grp-8/output/weight_martix/ms/msd_weight_ms.RData')
+load('~/Documents/GitHub/Spring2018-Project4-grp-8/output/weight_martix/ms/msd_weight_ms.RData')
 msd_weight_ms <- adjust(msd_weight_ms)
 
 msd.movie.neighbor =  neighbors.select(msd_weight_movie, n = 20)
@@ -172,28 +190,42 @@ msd.MS.neighbor = neighbors.select(msd_weight_ms, n = 20)
 msd.movie.pred = pred.matrix.movie(simweights =msd_weight_movie, top.neighbors = msd.movie.neighbor)
 msd.MS.pred = pred.matrix.ms(simweights =msd_weight_ms, top.neighbors = msd.MS.neighbor)
 
-# save(msd.movie.pred, file="/Users/yuexuanhuang/Documents/GitHub/Spring2018-Project4-grp-8/output/prediction/movie/pred_msd_movie.RData")
-# save(msd.MS.pred, file="/Users/yuexuanhuang/Documents/GitHub/Spring2018-Project4-grp-8/output/prediction/ms/pred_msd_ms.RData")
+# save(msd.movie.pred, file="~/Documents/GitHub/Spring2018-Project4-grp-8/output/prediction/movie/pred_msd_movie.RData")
+# save(msd.MS.pred, file="~/Documents/GitHub/Spring2018-Project4-grp-8/output/prediction/ms/pred_msd_ms.RData")
+
+msd.movie.neighbor1 =  neighbors.select(msd_weight_movie, n = 50)
+msd.MS.neighbor1 = neighbors.select(msd_weight_ms, n = 50)
+
+msd.movie.pred1 = pred.matrix.movie(simweights =msd_weight_movie, top.neighbors = msd.movie.neighbor1)
+msd.MS.pred1 = pred.matrix.ms(simweights =msd_weight_ms, top.neighbors = msd.MS.neighbor1)
+
+# save(msd.movie.pred1, file="~/Documents/GitHub/Spring2018-Project4-grp-8/output/prediction/movie/pred_msd_movie1.RData")
+# save(msd.MS.pred1, file="~/Documents/GitHub/Spring2018-Project4-grp-8/output/prediction/ms/pred_msd_ms1.RData")
 ```
 
 ## simrank
 ```{r}
-load('/Users/yuexuanhuang/Documents/GitHub/Spring2018-Project4-grp-8/output/weight_martix/ms/simrank_weight_ms.RData')
+load('~/Documents/GitHub/Spring2018-Project4-grp-8/output/weight_martix/ms/simrank_weight_ms.RData')
 simrank_weight_ms <- adjust(simrank_weight_ms)
 
 sim.MS.neighbor = neighbors.select(simrank_weight_ms, n = 20)
 sim.MS.pred = pred.matrix.ms(simweights =simrank_weight_ms, top.neighbors = sim.MS.neighbor)
 
-# save(sim.MS.pred, file="/Users/yuexuanhuang/Documents/GitHub/Spring2018-Project4-grp-8/output/prediction/ms/pred_sim_ms.RData")
+# save(sim.MS.pred, file="~/Documents/GitHub/Spring2018-Project4-grp-8/output/prediction/ms/pred_sim_ms.RData")
+
+sim.MS.neighbor1 = neighbors.select(simrank_weight_ms, n = 50)
+sim.MS.pred1 = pred.matrix.ms(simweights =simrank_weight_ms, top.neighbors = sim.MS.neighbor1)
+
+# save(sim.MS.pred1, file="~/Documents/GitHub/Spring2018-Project4-grp-8/output/prediction/ms/pred_sim_ms1.RData")
 ```
 
 ## var
 ```{r}
-load('/Users/yuexuanhuang/Documents/GitHub/Spring2018-Project4-grp-8/output/weight_martix/movie/variance_weight_movie.RData')
-variance_weight_movie <- adjust(variance_weight_movie)
+load('~/Documents/GitHub/Spring2018-Project4-grp-8/output/weight_martix/movie/variance_weight_movie.RData')
+variance_weight_movie <- adjust(mat_variance_weight)
 
-load('/Users/yuexuanhuang/Documents/GitHub/Spring2018-Project4-grp-8/output/weight_martix/ms/variance_weight_MS.RData')
-variance_weight_MS <- adjust(variance_weight_MS)
+load('~/Documents/GitHub/Spring2018-Project4-grp-8/output/weight_martix/ms/variance_weight_MS.RData')
+variance_weight_MS <- adjust(mat_variance_weight)
 
 var.movie.neighbor =  neighbors.select(variance_weight_movie, 20)
 var.MS.neighbor = neighbors.select(variance_weight_MS, 20)
@@ -201,7 +233,134 @@ var.MS.neighbor = neighbors.select(variance_weight_MS, 20)
 var.movie.pred = pred.matrix.movie(simweights =variance_weight_movie, top.neighbors = var.movie.neighbor)
 var.MS.pred = pred.matrix.ms(simweights =variance_weight_MS, top.neighbors = var.MS.neighbor)
 
-# save(var.movie.pred, file="/Users/yuexuanhuang/Documents/GitHub/Spring2018-Project4-grp-8/output/prediction/movie/pred_var_movie.RData")
-# save(var.MS.pred, file="/Users/yuexuanhuang/Documents/GitHub/Spring2018-Project4-grp-8/output/prediction/ms/pred_var_ms.RData")
+# save(var.movie.pred, file="~/Documents/GitHub/Spring2018-Project4-grp-8/output/prediction/movie/pred_var_movie.RData")
+# save(var.MS.pred, file="~/Documents/GitHub/Spring2018-Project4-grp-8/output/prediction/ms/pred_var_ms.RData")
+
+var.movie.neighbor1 =  neighbors.select(variance_weight_movie, 50)
+var.MS.neighbor1 = neighbors.select(variance_weight_MS, 50)
+
+var.movie.pred1 = pred.matrix.movie(simweights =variance_weight_movie, top.neighbors = var.movie.neighbor1)
+var.MS.pred1 = pred.matrix.ms(simweights =variance_weight_MS, top.neighbors = var.MS.neighbor1)
+
+# save(var.movie.pred1, file="~/Documents/GitHub/Spring2018-Project4-grp-8/output/prediction/movie/pred_var_movie1.RData")
+# save(var.MS.pred1, file="~/Documents/GitHub/Spring2018-Project4-grp-8/output/prediction/ms/pred_var_ms1.RData")
 ```
-  
+
+## evaluation
+```{r}
+source("~/Documents/GitHub/Spring2018-Project4-grp-8/lib/evaluation1.R")
+
+# Without Variance
+# Movie + TOP 20
+pearson.movie.mae = evaluation.mae(pr.movie.pred, movie_test)
+spearman.movie.mae = evaluation.mae(sp.movie.pred, movie_test)
+msd.movie.mae = evaluation.mae(msd.movie.pred, movie_test)
+
+# Movie + TOP 50
+pearson.movie.mae1 = evaluation.mae(pr.movie.pred1, movie_test)
+spearman.movie.mae1 = evaluation.mae(sp.movie.pred1, movie_test)
+msd.movie.mae1 = evaluation.mae(msd.movie.pred1, movie_test)
+
+# MS + TOP 20
+pearson.MS.rs = rank_score(pr.MS.pred, MS_test)
+spearman.MS.rs = rank_score(sp.MS.pred, MS_test)
+msd.MS.rs = rank_score(msd.MS.pred, MS_test)
+sim.MS.rs = rank_score(sim.MS.pred, MS_test)
+
+# MS + TOP 50
+pearson.MS.rs1 = rank_score(pr.MS.pred1, MS_test)
+spearman.MS.rs1 = rank_score(sp.MS.pred1, MS_test)
+msd.MS.rs1 = rank_score(msd.MS.pred1, MS_test)
+sim.MS.rs1 = rank_score(sim.MS.pred1, MS_test)
+```
+
+```{r}
+# With Variance
+# Pearson + Variance
+pearson.var.movie = variance_weight_movie * pearson_weight_movie
+pearson.var.MS = variance_weight_MS * pearson_weight_ms
+pearson.var.movie.neighbor =  neighbors.select(pearson.var.movie, n = 20)
+pearson.var.MS.neighbor = neighbors.select(pearson.var.MS, n = 20)
+pearson.var.movie.pred = pred.matrix.movie(simweights =pearson.var.movie,top.neighbors = pearson.var.movie.neighbor)
+pearson.var.MS.pred = pred.matrix.ms(simweights =pearson.var.MS, top.neighbors =pearson.var.MS.neighbor)
+
+pearson.var.movie.neighbor1 =  neighbors.select(pearson.var.movie, n = 50)
+pearson.var.MS.neighbor1 = neighbors.select(pearson.var.MS, n = 50)
+pearson.var.movie.pred1 = pred.matrix.movie(simweights =pearson.var.movie,top.neighbors = pearson.var.movie.neighbor1)
+pearson.var.MS.pred1 = pred.matrix.ms(simweights =pearson.var.MS, top.neighbors =pearson.var.MS.neighbor1)
+
+
+
+# Spearman + Variance
+spearman.var.movie = variance_weight_movie * spearman_weight_movie
+spearman.var.MS = variance_weight_MS * spearman_weight_ms
+spearman.var.movie.neighbor =  neighbors.select(spearman.var.movie, n=20)
+spearman.var.MS.neighbor = neighbors.select(spearman.var.MS, n=20)
+spearman.var.movie.pred = pred.matrix.movie(simweights =spearman.var.movie,top.neighbors = spearman.var.movie.neighbor)
+spearman.var.MS.pred = pred.matrix.ms(simweights =spearman.var.MS,top.neighbors = spearman.var.MS.neighbor)
+
+spearman.var.movie.neighbor1 =  neighbors.select(spearman.var.movie, n=50)
+spearman.var.MS.neighbor1 = neighbors.select(spearman.var.MS, n=50)
+spearman.var.movie.pred1 = pred.matrix.movie(simweights =spearman.var.movie,top.neighbors = spearman.var.movie.neighbor1)
+spearman.var.MS.pred1 = pred.matrix.ms(simweights =spearman.var.MS,top.neighbors = spearman.var.MS.neighbor1)
+
+# MSD + Variance
+msd.var.movie = variance_weight_movie * msd_weight_movie
+msd.var.MS = variance_weight_MS * msd_weight_ms
+msd.var.movie.neighbor =  neighbors.select(msd.var.movie, n=20)
+msd.var.MS.neighbor = neighbors.select(msd.var.MS, n=20)
+msd.var.movie.pred = pred.matrix.movie(simweights =msd.var.movie,top.neighbors = msd.var.movie.neighbor)
+msd.var.MS.pred = pred.matrix.ms(simweights =msd.var.MS,top.neighbors = msd.var.MS.neighbor)
+
+msd.var.movie.neighbor1 =  neighbors.select(msd.var.movie, n=50)
+msd.var.MS.neighbor1 = neighbors.select(msd.var.MS, n=50)
+msd.var.movie.pred1 = pred.matrix.movie(simweights =msd.var.movie,top.neighbors = msd.var.movie.neighbor1)
+msd.var.MS.pred1 = pred.matrix.ms(simweights =msd.var.MS,top.neighbors = msd.var.MS.neighbor1)
+
+
+# SimRank + Var
+simrank.var.ms = variance_weight_MS * simrank_weight_ms
+simrank.var.ms.neighbor =  neighbors.select(simrank.var.ms, n=20 )
+simrank.var.ms.pred = pred.matrix.ms(simweights =simrank.var.ms,top.neighbors = simrank.var.ms.neighbor)
+
+simrank.var.ms1 = variance_weight_MS * simrank_weight_ms
+simrank.var.ms.neighbor1 =  neighbors.select(simrank.var.ms, n=50 )
+simrank.var.ms.pred1 = pred.matrix.ms(simweights =simrank.var.ms,top.neighbors = simrank.var.ms.neighbor1)
+
+```
+
+
+## evaluation
+```{r}
+# With Variance
+# Movie + TOP 20
+pearson.var.movie.mae = evaluation.mae(pearson.var.movie.pred, movie_test)
+spearman.var.movie.mae = evaluation.mae(spearman.var.movie.pred, movie_test)
+msd.var.movie.mae = evaluation.mae(msd.var.movie.pred, movie_test)
+
+# Movie + TOP 50
+pearson.var.movie.mae1 = evaluation.mae(pearson.var.movie.pred1, movie_test)
+spearman.var.movie.mae1 = evaluation.mae(spearman.var.movie.pred1, movie_test)
+msd.var.movie.mae1 = evaluation.mae(msd.var.movie.pred1, movie_test)
+
+# MS + TOP 20
+pearson.var.MS.rs = rank_score(pearson.var.MS.pred, MS_test)
+spearman.var.MS.rs = rank_score(spearman.var.MS.pred, MS_test)
+msd.var.MS.rs = rank_score(msd.var.MS.pred, MS_test)
+sim.var.MS.rs = rank_score(simrank.var.ms.pred, MS_test)
+
+# MS + TOP 50
+pearson.var.MS.rs1 = rank_score(pearson.var.MS.pred1, MS_test)
+spearman.var.MS.rs1 = rank_score(spearman.var.MS.pred1, MS_test)
+msd.var.MS.rs1 = rank_score(msd.var.MS.pred1, MS_test)
+sim.var.MS.rs1 = rank_score(simrank.var.ms.pred1, MS_test)
+```
+
+
+
+
+
+
+
+
+
