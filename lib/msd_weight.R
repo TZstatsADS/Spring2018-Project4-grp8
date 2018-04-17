@@ -1,19 +1,19 @@
-msd_weight <- function(df){
-  n <- dim(df)[1]
+msd_weight <- function(mat){
+  n <- dim(mat)[1]
   dissim <- matrix(NA, n, n)
-  user <- rownames(df)
+  user <- rownames(mat)
   colnames(dissim) <- user
   rownames(dissim) <- user
   for (i in 1:n){
     for (j in 1:n){
-      u_i <- df[i,]
-      u_j <- df[j,]
-      dissim[i,j] <- mean((u_i - u_j)^2, na.rm = T)
+      ui <- mat[i,]
+      uj <- mat[j,]
+      dissim[i,j] <- mean((ui - uj)^2, na.rm = T)
     }
   }
-  L <- max(dissim)
+  L <- max(dissim, na.rm = T)
   w <- (L - dissim)/L
-  return (w)
+  return(w)
 }
 
 # ms
