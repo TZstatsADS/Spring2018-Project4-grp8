@@ -7,7 +7,7 @@ Term: Spring 2018
 + Group 8
 + Projec title: Application of Collaborative Filtering - Based on Different Algorithms
 + Team members
-	+ Chen, Mengqi mc4396@columbia.edu (Presenter)
+	+ Zheng, Jia jz2891@columbia.edu (Presenter)
 	+ Chen, Mengqi mc4396@columbia.edu
 	+ Huang, Yuexuan yh2966@columbia.edu
 	+ Li, Xueyao xl2719@columbia.edu
