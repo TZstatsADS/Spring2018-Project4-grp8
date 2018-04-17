@@ -4,17 +4,39 @@
 
 Term: Spring 2018
 
-+ Team #
-+ Projec title: Lorem ipsum dolor sit amet
++ Group 8
++ Projec title: Application of Collaborative Filtering - Based on Different Algorithms
 + Team members
-	+ team member 1
-	+ team member 2
-	+ team member 3
-	+ team member 4
-	+ team member 5
-+ Project summary: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+	+ Chen, Mengqi mc4396@columbia.edu (Presenter)
+	+ Chen, Mengqi mc4396@columbia.edu
+	+ Huang, Yuexuan yh2966@columbia.edu
+	+ Li, Xueyao xl2719@columbia.edu
+
++ Project summary: In this project, we applied two algorithms: memory-based algorithm, including Similarity Weight (Spearman Correlation, Mean-square-difference and SimRank), Variance Weight (Used or not) and Selecting Neighbours (Best-n-estimator) and model-based algorithm, including Cluster Models to conduct Collaborative Filtering. And we used two datasets, Anonymous Microsoft Web Data (MS) and EachMovie Dataset (Movie) to evaluate and compare a pair of algorithms. For evaluation part, we compared the performance for these di?erent algorithms by Ranked Scoring for MS dataset and MAE for Movie dataset.
+
+The following charts give an exhaustive visual understanding of the performance of all the algorithms we used on different datasets.
+
+charts
+charts
+charts
+
+
 	
 **Contribution statement**: ([default](doc/a_note_on_contributions.md)) All team members contributed equally in all stages of this project. All team members approve our work presented in this GitHub repository including this contributions statement. 
+ 
+ + **Zheng, Jia：** 
+ 
+ + **Chen, Mengqi：**  
+ 
+ + **Huang, Yuexuan：** 
+ 
+ + **Li, Xueyao：** 
+ 
+ 
+ References used: 
+1. 
+2.
+3.
 
 Following [suggestions](http://nicercode.github.io/blog/2013-04-05-projects/) by [RICH FITZJOHN](http://nicercode.github.io/about/#Team) (@richfitz). This folder is orgarnized as follows.
 
