@@ -2,11 +2,9 @@
 title: "Project 4"
 author: "Mengqi Chen, Yuexuan Huang, Xueyao Li, Jia Zheng"
 output:
-  html_notebook: default
   pdf_document: default
+  html_notebook: default
 ---
-
-
 
 In this project, we tested two general classes of collaborative filtering algorithms, one is memory-based and the other is model-based.  
 
