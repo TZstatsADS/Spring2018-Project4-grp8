@@ -24,7 +24,7 @@ The following charts give an exhaustive visual understanding of the performance 
  
  + **Zheng, Jia**: Cluster models: EM algorithm, 5-fold cross validation, MAE evaluation; Testing report; Presentation
  
- + **Chen, Mengqi**:  
+ + **Chen, Mengqi**:  Memmory-based Models; Predictions and evaluation
  
  + **Huang, Yuexuan**: 
  
