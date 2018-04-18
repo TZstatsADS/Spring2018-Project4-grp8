@@ -10,7 +10,7 @@ movie_train <- read.csv("../data_sample/eachmovie_sample/data_train.csv")[,-1]
 movie_test <- read.csv("../data_sample/eachmovie_sample/data_test.csv")[,-1]
 
 source("cluster_model.R")
-cv.cluster.models <- TRUE
+cv.cluster.models <- FALSE
 ```
 
 ### 2. Cross validation for choosing cluster size C
