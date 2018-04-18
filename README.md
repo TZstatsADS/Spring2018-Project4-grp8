@@ -26,7 +26,7 @@ The following charts give an exhaustive visual understanding of the performance 
  
  + **Chen, Mengqi**:  Memmory-based Models; Predictions and evaluation
  
- + **Huang, Yuexuan**:  Data cleaning for MS and movie data; Calculate Variance Weighting Matrix and combined with Similarity Weight: Pearson Correlation, Spearman Correlation, Mean square difference and SimRank; Applied prediction algorithm and evaluated rank score and MAE on different datasets. Edit Main.rmd and organized github folders.
+ + **Huang, Yuexuan**:  Data cleaning for MS and movie data; Calculate Variance Weighting Matrix and combined with Similarity Weight: Pearson Correlation, Spearman Correlation, Mean square difference and SimRank; Applied prediction algorithm and evaluated rank score and MAE on different datasets. Editted Main.rmd, editted readme file and organized github folders.
  
  + **Li, Xueyao**: Data preprocessing for MS and movie data; Similarity Weight: Pearson Correlation, Spearman Correlation, Mean square difference and SimRank; Evaluation: rank score, MAE and ROC; Testing report
  
