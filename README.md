@@ -30,7 +30,7 @@ charts
  
  + **Huang, Yuexuan：** 
  
- + **Li, Xueyao：** 
+ + **Li, Xueyao：** Data preprocessing for MS and movie data; Similarity Weight: Pearson Correlation, Spearman Correlation, Mean square difference and SimRank; Evaluation: rank score, MAE and ROC
  
  
  References used: 
