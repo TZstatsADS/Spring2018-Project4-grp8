@@ -16,19 +16,19 @@ Term: Spring 2018
 
 The following charts give an exhaustive visual understanding of the performance of all the algorithms we used on different datasets.
 
-![Ranked Scoring for MSWEB dataset](../figs/ms_table.png)
+![Ranked Scoring for MSWEB dataset](/figs/ms_table.png)
 
-![MAE for Eachmovie dataset](../figs/movie_table.png)
+![MAE for Eachmovie dataset](figs/movie_table.png)
 
 **Contribution statement**: All team members contributed equally in all stages of this project. All team members approve our work presented in this GitHub repository including this contributions statement. 
  
- + **Zheng, Jia: �** Cluster models: �EM algorithm, 5-fold cross validation, MAE evaluation; Testing report; Presentation
+ + **Zheng, Jia**: Cluster models: EM algorithm, 5-fold cross validation, MAE evaluation; Testing report; Presentation
  
- + **Chen, Mengqi: **  
+ + **Chen, Mengqi**:  
  
- + **Huang, Yuexuan: �** 
+ + **Huang, Yuexuan**: 
  
- + **Li, Xueyao:� ** Data preprocessing for MS and movie data; Similarity Weight: Pearson Correlation, Spearman Correlation, Mean square difference and SimRank; Evaluation: rank score, MAE and ROC; Testing report
+ + **Li, Xueyao**: Data preprocessing for MS and movie data; Similarity Weight: Pearson Correlation, Spearman Correlation, Mean square difference and SimRank; Evaluation: rank score, MAE and ROC; Testing report
  
  
  References used: 
@@ -40,11 +40,11 @@ Following [suggestions](http://nicercode.github.io/blog/2013-04-05-projects/) by
 
 ```
 proj/
-├── lib/
-├── data/
-├── doc/
-├── figs/
-└── output/
+â”œâ”€â”€ lib/
+â”œâ”€â”€ data/
+â”œâ”€â”€ doc/
+â”œâ”€â”€ figs/
+â””â”€â”€ output/
 ```
 
 Please see each subfolder for a README file.
