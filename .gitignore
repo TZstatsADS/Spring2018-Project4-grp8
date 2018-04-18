@@ -1,2 +1,4 @@
 
 .DS_Store
+output/weight_martix/ms/simrank_weight_ms.RData
+output/weight_martix/movie/msd_weight_movie.RData

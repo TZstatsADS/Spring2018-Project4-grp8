@@ -2,8 +2,8 @@
 title: "Project 4"
 author: "Mengqi Chen, Yuexuan Huang, Xueyao Li, Jia Zheng"
 output:
-  pdf_document: default
   html_notebook: default
+  pdf_document: default
 ---
 
 In this project, we tested two general classes of collaborative filtering algorithms, one is memory-based and the other is model-based.  
@@ -567,8 +567,10 @@ evaluation.mae(score.est, movie_test$Score)
 ```
 
 # Summary
-The MSWEB table shows ranked scoring for the Microsoft website dataset with higher scores indicating better performance. We can see from the table that the performance of Pearson and Spearman are pretty close, and the performances of Mean-Squared-Difference are always the best among four similarity metrics. And also, by including variance weighting and expanding neighborhood, the performance gets better. Specifically, the combination of mean-squared-difference, variance weighting and best-n = 50 performs the best with the highest score equals to 37.44
-![Ranked Scoring for MSWEB dataset](../figs/ms_table.png)
+The MSWEB table shows ranked scoring for the Microsoft website dataset with higher scores indicating better performance. We can see from the table that the performance of Pearson and Spearman are pretty close, and the performances of Mean-Squared-Difference are always the best among four similarity metrics. And also, by including variance weighting and expanding neighborhood, the performance gets better. Specifically, the combination of mean-squared-difference, variance weighting and best-n = 50 performs the best with the highest score equals to 37.44.
+
+![](../figs/ms_table.png)
 
 The EachMovie table shows Mean absolute error for Eachmovie dataset. The smaller the MAE is, the better the performance is. For memory-based algorithm, we get the same conclusion with last table that the combination of mean-squared-difference, variance weighting and best-n = 50 performs the best with smallest MAE equals to 1.058. For model-based algorithm, the MAE of cluster models is 0.994. In this case, the cluster model performs the best.
-![MAE for Eachmovie dataset](../figs/movie_table.png)
+
+![](../figs/movie_table.png)
