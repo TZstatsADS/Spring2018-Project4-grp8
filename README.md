@@ -26,15 +26,20 @@ The following charts give an exhaustive visual understanding of the performance 
  
  + **Chen, Mengqi**:  Memmory-based Models; Predictions and evaluation
  
- + **Huang, Yuexuan**: 
+ + **Huang, Yuexuan**:  Data cleaning for MS and movie data; Calculate Variance Weighting Matrix and combined with Similarity Weight: Pearson Correlation, Spearman Correlation, Mean square difference and SimRank; Applied prediction algorithm and evaluated rank score and MAE on different datasets. Edit Main.rmd and organized github folders.
  
  + **Li, Xueyao**: Data preprocessing for MS and movie data; Similarity Weight: Pearson Correlation, Spearman Correlation, Mean square difference and SimRank; Evaluation: rank score, MAE and ROC; Testing report
  
  
  References used: 
-1. 
-2.
-3.
+1. Empirical analysis of predictive algorithms for collaborative filtering
+2. An algorithmic framework for performing collaborative filtering
+3. SimRank- a measure of structural-context similarity
+4. Methods and Metrics for Cold-Start Recommendations
+5. A Survey of Collaborative Filtering Techniques
+6. A Space and Time Efficient Algorithm for SimRank Computation
+7. An Introduction to Collaborative Filtering
+8. Fast, memory efficient low-rank approximation of SimRank
 
 Following [suggestions](http://nicercode.github.io/blog/2013-04-05-projects/) by [RICH FITZJOHN](http://nicercode.github.io/about/#Team) (@richfitz). This folder is orgarnized as follows.
 
