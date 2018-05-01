@@ -40,6 +40,7 @@ The following charts give an exhaustive visual understanding of the performance 
 6. A Space and Time Efficient Algorithm for SimRank Computation
 7. An Introduction to Collaborative Filtering
 8. Fast, memory efficient low-rank approximation of SimRank
+9. https://github.com/TZstatsADS/Fall2017-project4-grp1 For performing memory-based algorithm
 
 Following [suggestions](http://nicercode.github.io/blog/2013-04-05-projects/) by [RICH FITZJOHN](http://nicercode.github.io/about/#Team) (@richfitz). This folder is orgarnized as follows.
 
